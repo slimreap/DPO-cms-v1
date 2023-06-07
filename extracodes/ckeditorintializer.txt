@@ -1,0 +1,32 @@
+function initializeckeditor(){
+  $('.editor1').click(function() {
+  
+    // set id for the newly clicked element
+    $(this).attr('id', 'editor1');
+  
+    // add 'active' class to the newly clicked element
+    $('.editor1').removeClass('active');
+    $(this).addClass('active');
+
+    if ($(this).hasClass('active'))
+    {
+      
+      var editor = CKEDITOR.instances[this.id];
+      if (editor) {
+          //  editor.destroy();
+      }
+      else {
+        CKEDITOR.disableAutoInline = true;
+        CKEDITOR.inline(this.id, {
+          fontSize_sizes: '12/12px; 14/14px; 16/16px; 18/18px; 20/20px; 24/24px; 28/28px; 32/32px;'
+        });
+      }
+    }
+    else
+    {
+
+      var editor = CKEDITOR.instances[this.id];
+      editor.destroy();
+    } 
+  });
+};

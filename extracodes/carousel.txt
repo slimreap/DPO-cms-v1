@@ -1,0 +1,34 @@
+<div x-data='{slides: [
+              {image: "http://privacy.wmsu.edu.ph/storage/images/WMSU.png"},
+              {image: "http://privacy.wmsu.edu.ph/storage/images/sarskie.jpg"},
+              ],
+              
+    
+                slideIndex: 0,
+              
+                prevSlide() {
+                this.slideIndex = (this.slideIndex === 0) ? (this.slides.length - 1) : (this.slideIndex - 1);
+                },
+                nextSlide(){
+                this.slideIndex = (this.slideIndex === this.slides.length - 1) ? 0 : (this.slideIndex + 1);
+                }
+              }'
+              class='w-full h-screen relative'>
+              
+                <!-- Carousel slides -->
+                <div class='carousel-container w-full h-full absolute top-0 left-0'>
+                <template x-for="(slide, index) in slides" :key="index">
+                  <div x-show="slideIndex === index" class="carousel-slide w-full h-full bg-cover bg-center absolute top-0 left-0" :style="'background-image: url('+slide.image+')'">
+                    <div class="carousel-caption text-white text-center text-3xl uppercase tracking-wider absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
+                  </template>
+                  
+                  
+                </div>
+              
+                <!-- Carousel controls -->
+                <div class='carousel-controls absolute top-1/2 left-0 transform -translate-y-1/2 flex justify-between w-full'>
+                <button @click='prevSlide()' class='carousel-control-btn p-2 rounded-full text-white font-bold'><box-icon class="text-2xl" name='chevron-left' type='solid' animation='fade-right' color='#c50404' ></box-icon></button>
+                <button @click='nextSlide()' class='carousel-control-btn p-2 rounded-full text-white font-bold'><box-icon type='solid' color='#c50404' width="" animation='fade-right' name='chevron-right'></box-icon></button>
+                </div>
+              </div>
